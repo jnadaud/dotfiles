@@ -1,0 +1,76 @@
+[user]
+	email = jerome.nadaud@gmail.com
+	name = Jérôme Nadaud
+[color]
+	ui = auto
+[alias]
+	st = status
+	ci = commit
+	lg = log --graph --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ar)%Creset'
+	oops = commit --amend --no-edit
+    co = checkout
+    ca = git commit -am
+[core]
+	pager = cat
+	#
+	# Out of luck: on Windows w/o msysGit? You may have Notepad++…
+	# editor = 'C:/Program Files/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin
+	#
+	# If you want to use Sublime Text 2's subl wrapper:
+	# editor = subl -w
+	#
+	editor = subl -w
+	whitespace = -trailing-space
+	excludesfile = /Users/jnadaud/.gitignore
+[diff]
+	mnemonicPrefix = true
+	renames = true
+	wordRegex = .
+	submodule = log
+	tool = p4merge
+[fetch]
+	recurseSubmodules = on-demand
+[grep]
+	extendedRegexp = true
+[log]
+	abbrevCommit = true
+[merge]
+	conflictStyle = diff3
+	tool = p4mergetool
+[mergetool]
+	keepBackup = false
+	keepTemporaries = false
+	prompt = false
+[pull]
+	# This is GREAT… when you know what you're doing and are careful
+	# not to pull --no-rebase over a local line containing a true merge.
+	# rebase = true
+	# WARNING! This option, which does away with the one gotcha of
+	# auto-rebasing on pulls, is only available from 1.8.5 onwards.
+	rebase = preserve
+[push]
+	default = upstream
+[rerere]
+	# If, like me, you like rerere, decomment these
+	# autoupdate = true
+	enabled = true
+[status]
+	submoduleSummary = true
+	showUntrackedFiles = all
+[color "branch"]
+	upstream = cyan
+[tag]
+	sort = version:refname
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[mergetool "p4mergetool"]
+	cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $PWD/$BASE $PWD/$REMOTE $PWD/$LOCAL $PWD/$MERGED
+	trustExitCode = false
