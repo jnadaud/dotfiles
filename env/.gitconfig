@@ -1,27 +1,36 @@
 [user]
-	email = jerome.nadaud@gmail.com
-	name = Jérôme Nadaud
+	email = jerome@nadaud.io
+	name = Jerome Nadaud
 [color]
-	ui = auto
+	branch = auto
+	diff = auto
+	status = auto
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
 [alias]
 	st = status
 	ci = commit
 	lg = log --graph --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ar)%Creset'
-	oops = commit --amend --no-edit
+	oops = commit --amend --no-edit -n
     co = checkout
-    ca = git commit -am
+    ca = commit -am
+    fab = commit -am '--'
 [core]
 	pager = cat
-	#
-	# Out of luck: on Windows w/o msysGit? You may have Notepad++…
-	# editor = 'C:/Program Files/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin
-	#
-	# If you want to use Sublime Text 2's subl wrapper:
-	# editor = subl -w
-	#
-	editor = subl -w
+	editor = code -w
 	whitespace = -trailing-space
-	excludesfile = /Users/jnadaud/.gitignore
+	excludesfile = /Users/jerome/.gitignore
 [diff]
 	mnemonicPrefix = true
 	renames = true
@@ -57,8 +66,6 @@
 [status]
 	submoduleSummary = true
 	showUntrackedFiles = all
-[color "branch"]
-	upstream = cyan
 [tag]
 	sort = version:refname
 [difftool "sourcetree"]
