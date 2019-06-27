@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
 
+#Prepare ssh repo
 mkdir ~/.ssh
 chmod 700 ~/.ssh
 
+#Speed up terminal key
 defaults write NSGlobalDomain KeyRepeat -int 1
 
 xcode-select --install
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew update
 brew tap caskroom/cask
-
 
 ln -s $(pwd)/env/.gitconfig ~/.
 ln -s $(pwd)/env/.gitignore ~/.
@@ -21,11 +22,16 @@ brew install zsh zsh-completions
 brew cask install iterm2
 chsh -s /bin/zsh
 
-brew install terminal-notifier tmate go crystal node htop thefuck the_silver_searcher glances
-brew cask install keybase slack iina insomnia virtualbox tableplus sequel-pro spectacle ngrok enpass visual-studio-code
+#Install utils
+brew install terminal-notifier tmate htop thefuck the_silver_searcher glances
+brew cask install iina spectacle enpass
 
-#Install prompt
-npm install --global pure-prompt
+#Install languages
+brew install go crystal node
+
+#Install dev tools
+brew install mkcert
+brew cask install keybase slack insomnia virtualbox tableplus sequel-pro ngrok visual-studio-code
 
 #Install composer
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -45,6 +51,15 @@ sudo launchctl unload -w /System/Library/LaunchDaemons/org.apache.httpd.plist
 
 brew cleanup
 
+#Install prompt and fonts
+npm install --global pure-prompt
+git clone https://github.com/powerline/fonts.git --depth=1
+cd fonts
+./install.sh
+cd ..
+rm -rf fonts
+
+#Install Oh My ZSH
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 sudo shutdown -r now
