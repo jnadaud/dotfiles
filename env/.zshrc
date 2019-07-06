@@ -52,7 +52,7 @@ export UPDATE_ZSH_DAYS=7
 plugins=(git osx go docker)
 
 # User configuration
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:~/Library/Python/2.7/bin:/usr/local/opt/sphinx-doc/bin"
+export PATH="/usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/opt/sphinx-doc/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 source $ZSH/oh-my-zsh.sh
 
@@ -100,3 +100,4 @@ autoload -U +X bashcompinit && bashcompinit
 
 complete -o nospace -C "/usr/local/bin/symfony self:autocomplete --zsh" symfony
 export PATH="/usr/local/opt/node@10/bin:$PATH"
+export PATH="/usr/local/opt/sphinx-doc/bin:$PATH"
