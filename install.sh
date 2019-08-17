@@ -30,7 +30,7 @@ brew cask install iina spectacle enpass telegram spotify transmission the-unarch
 brew install go crystal node
 
 #Install dev tools
-brew install mkcert
+brew install mkcert wellington
 brew cask install keybase slack insomnia virtualbox tableplus sequel-pro ngrok visual-studio-code
 
 #Install gitbook
@@ -70,5 +70,9 @@ rm -rf fonts
 
 #Install Oh My ZSH
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+#Update osx conf
+defaults write com.apple.Terminal FocusFollowsMouse -string YES
+defaults write NSGlobalDomain KeyRepeat -int 1
 
 sudo shutdown -r now

@@ -95,3 +95,8 @@ alias sf='symfony'
 
 # Git
 alias rmstlbranch= "git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done"
+
+# Personal stuff
+alias txiki='imessage -c +33621950286 -t $1'
+alias rosa='imessage -c +33781983352 -t $1'
+alias upnadaud='scp $1 nadaud.io:~/media/movies/.'
