@@ -5,7 +5,6 @@ mkdir ~/.ssh
 chmod 700 ~/.ssh
 
 #Speed up terminal key
-defaults write NSGlobalDomain KeyRepeat -int 1
 
 xcode-select --install
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -24,7 +23,7 @@ chsh -s /bin/zsh
 
 #Install utils
 brew install terminal-notifier tmate htop thefuck the_silver_searcher glances
-brew cask install iina spectacle enpass telegram spotify transmission the-unarchiver
+brew cask install iina spectacle enpass telegram spotify transmission the-unarchiver appcleaner
 
 #Install languages
 brew install go crystal node
