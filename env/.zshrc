@@ -52,18 +52,13 @@ export UPDATE_ZSH_DAYS=7
 plugins=(git osx go docker)
 
 # User configuration
-export PATH="/usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/opt/sphinx-doc/bin"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/opt/sphinx-doc/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 source $ZSH/oh-my-zsh.sh
 
 export EDITOR=/usr/bin/nano
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-
-export DOCKER_HOST=tcp://192.168.64.2:2376
-export DOCKER_CERT_PATH=/Users/jerome/.docker/machine/machines/dinghy
-export DOCKER_TLS_VERIFY=1
-export DOCKER_MACHINE_NAME=dinghy
 
 source ~/.aliases
 
@@ -106,3 +101,10 @@ autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C "/usr/local/bin/symfony self:autocomplete --zsh" symfony
 export PATH="/usr/local/opt/node@10/bin:$PATH"
 export PATH="/usr/local/opt/sphinx-doc/bin:$PATH"
+
+export DOCKER_HOST=tcp://192.168.64.3:2376
+export DOCKER_CERT_PATH=/Users/jerome/.docker/machine/machines/dinghy
+export DOCKER_TLS_VERIFY=1
+export DOCKER_MACHINE_NAME=dinghy
+
+eval $(dinghy env)

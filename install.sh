@@ -4,8 +4,7 @@
 mkdir ~/.ssh
 chmod 700 ~/.ssh
 
-#Speed up terminal key
-
+#Install Homebrew
 xcode-select --install
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew update
@@ -22,7 +21,7 @@ brew cask install iterm2
 chsh -s /bin/zsh
 
 #Install utils
-brew install terminal-notifier tmate htop thefuck the_silver_searcher glances
+brew install terminal-notifier tmate htop thefuck the_silver_searcher glances unrar p7zip
 brew cask install iina spectacle enpass telegram spotify transmission the-unarchiver appcleaner
 
 #Install languages
@@ -36,6 +35,7 @@ brew cask install keybase slack insomnia virtualbox tableplus sequel-pro ngrok v
 npm install gitbook-cli -g
 brew cask install gitbook-editor
 
+#Install Python tools
 sudo easy_install pip
 
 #Install composer
@@ -45,10 +45,24 @@ php -r "unlink('composer-setup.php');"
 mv composer.phar /usr/local/bin/composer
 chmod +x /usr/local/bin/composer
 
-#Install Docker
-brew install docker docker-machine docker-compose docker-machine-nfs
-docker-machine create --driver=virtualbox --virtualbox-cpu-count "4" --virtualbox-disk-size "30000" default
-docker-machine-nfs default
+#Install Docker and Dinghy
+brew tap codekitchen/dinghy
+brew install docker docker-machine docker-compose dinghy
+mkdir $HOME/.dinghy
+/bin/cat <<EOM >$HOME/.dinghy/preferences.yml
+---
+:preferences:
+  :unfs_disabled: false
+  :proxy_disabled: true
+  :dns_disabled: false
+  :fsevents_disabled: false
+  :create:
+    memory: 4096
+    cpus: 2
+    disk: 30000
+    provider: xhyve
+EOM
+dinghy create
 
 #Remove apache
 sudo apachectl -k stop
@@ -72,6 +86,18 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 
 #Update osx conf
 defaults write com.apple.Terminal FocusFollowsMouse -string YES
+
+# Set a blazingly fast keyboard repeat rate
 defaults write NSGlobalDomain KeyRepeat -int 1
+#defaults write NSGlobalDomain InitialKeyRepeat -int 10
+
+# Keep folders on top when sorting by name
+defaults write com.apple.finder _FXSortFoldersFirst -bool true
+
+# When performing a search, search the current folder by default
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+# Make dock transparent
+defaults write com.apple.dock hide-mirror -bool true
 
 sudo shutdown -r now
