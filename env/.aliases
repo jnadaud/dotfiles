@@ -88,10 +88,15 @@ alias dockerenv='eval $(docker-machine env)'
 alias rmcontainers='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 alias rmimages='docker rmi -f $(docker images -a -q) --force'
 alias dcip="docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -a -q)"
-alias portainer="docker volume create portainer_data && docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer && open 'http://192.168.99.100:9000'"
+alias portainer="docker volume create portainer_data && docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer && open 'http://192.168.64.3:9000'"
 
 # Symfony
 alias sf='symfony'
 
 # Git
 alias rmstlbranch= "git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done"
+
+# Personal stuff
+upnadaud () {
+    scp "${1}" nadaud.io:~/media/movies/.
+}
