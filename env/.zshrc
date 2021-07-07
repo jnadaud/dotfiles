@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=~/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -45,14 +45,16 @@ export UPDATE_ZSH_DAYS=7
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+ZSH_DISABLE_COMPFIX=true
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git osx go docker)
+#plugins=(git osx go docker)
 
 # User configuration
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/opt/sphinx-doc/bin"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/opt/sphinx-doc/bin:/Users/jerome/Library/Python/2.7/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 source $ZSH/oh-my-zsh.sh
 
@@ -95,17 +97,7 @@ prompt pure
 #Autoload ssh key
 ssh-add -A &> /dev/null
 
-#thefuck alias
-eval $(thefuck --alias)
 autoload -U +X bashcompinit && bashcompinit
 
 complete -o nospace -C "/usr/local/bin/symfony self:autocomplete --zsh" symfony
 export PATH="/usr/local/opt/node@10/bin:$PATH"
-export PATH="/usr/local/opt/sphinx-doc/bin:$PATH"
-
-export DOCKER_HOST=tcp://192.168.64.3:2376
-export DOCKER_CERT_PATH=/Users/jerome/.docker/machine/machines/dinghy
-export DOCKER_TLS_VERIFY=1
-export DOCKER_MACHINE_NAME=dinghy
-
-eval $(dinghy env)

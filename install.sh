@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+#Change computer name
+sudo scutil --set ComputerName "Nebula"
+sudo scutil --set HostName "Nebula"
+sudo scutil --set LocalHostName "Nebula"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "Nebula"
+
 #Prepare ssh repo
 mkdir ~/.ssh
 chmod 700 ~/.ssh
@@ -8,12 +14,11 @@ chmod 700 ~/.ssh
 xcode-select --install
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew update
-brew tap caskroom/cask
+brew tap homebrew/cask-cask
 
-ln -s $(pwd)/env/.gitconfig ~/.
-ln -s $(pwd)/env/.gitignore ~/.
-ln -s $(pwd)/env/.zshrc ~/.
-ln -s $(pwd)/env/.alias ~/.
+ln -s $(pwd)/Development/dotfiles/env/.gitconfig ~/.
+ln -s $(pwd)/Development/dotfiles/env/.gitignore ~/.
+ln -s $(pwd)/Development/dotfiles/env/.aliases ~/.
 
 #Install ZSH
 brew install zsh zsh-completions
@@ -21,22 +26,23 @@ brew cask install iterm2
 chsh -s /bin/zsh
 
 #Install utils
-brew install terminal-notifier tmate htop thefuck the_silver_searcher glances unrar p7zip gpg
-brew cask install iina spectacle enpass telegram spotify transmission the-unarchiver appcleaner
+brew install terminal-notifier tmate htop the_silver_searcher glances unrar p7zip gpg
+brew cask install iina whatsapp dropbox spotify transmission the-unarchiver appcleaner docker
 
 #Install languages
 brew install go crystal node
 
 #Install dev tools
-brew install mkcert wellington
-brew cask install keybase slack insomnia virtualbox tableplus sequel-pro ngrok visual-studio-code
+brew install mkcert
+brew cask install slack insomnia tableplus sequel-pro ngrok visual-studio-code 
+#Install symfony cli
+curl -sS https://get.symfony.com/cli/installer | bash
 
-#Install gitbook
-npm install gitbook-cli -g
-brew cask install gitbook-editor
+#Install Python 3
+#brew install python
 
-#Install Python tools
-sudo easy_install pip
+#Install devops tools
+brew install terraform ansible
 
 #Install composer
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -45,31 +51,12 @@ php -r "unlink('composer-setup.php');"
 mv composer.phar /usr/local/bin/composer
 chmod +x /usr/local/bin/composer
 
-#Install Docker and Dinghy
-brew tap codekitchen/dinghy
-brew install docker docker-machine docker-compose dinghy
-mkdir $HOME/.dinghy
-/bin/cat <<EOM >$HOME/.dinghy/preferences.yml
----
-:preferences:
-  :unfs_disabled: false
-  :proxy_disabled: true
-  :dns_disabled: false
-  :fsevents_disabled: false
-  :create:
-    memory: 4096
-    cpus: 2
-    disk: 30000
-    provider: xhyve
-EOM
-dinghy create
-
 #Remove apache
 sudo apachectl -k stop
 sudo launchctl unload -w /System/Library/LaunchDaemons/org.apache.httpd.plist
 
 #Update PHP
-brew install php@7.3
+brew install php@8.0
 
 brew cleanup
 
@@ -80,9 +67,6 @@ cd fonts
 ./install.sh
 cd ..
 rm -rf fonts
-
-#Install Oh My ZSH
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 #Update osx conf
 defaults write com.apple.Terminal FocusFollowsMouse -string YES
@@ -99,5 +83,10 @@ defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 
 # Make dock transparent
 defaults write com.apple.dock hide-mirror -bool true
+
+#Install Oh My ZSH
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+rm -f .zshrc
+ln -s $(pwd)/Development/dotfiles/env/.zshrc ~/.
 
 sudo shutdown -r now

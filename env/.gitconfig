@@ -1,6 +1,6 @@
 [user]
 	email = jerome@nadaud.io
-	name = Jerome Nadaud
+	name = Jérôme Nadaud
 [color]
 	branch = auto
 	diff = auto
@@ -31,6 +31,7 @@
 	editor = code -w
 	whitespace = -trailing-space
 	excludesfile = /Users/jerome/.gitignore
+	autocrlf = input
 [diff]
 	mnemonicPrefix = true
 	renames = true
@@ -56,7 +57,7 @@
 	# rebase = true
 	# WARNING! This option, which does away with the one gotcha of
 	# auto-rebasing on pulls, is only available from 1.8.5 onwards.
-	rebase = preserve
+	rebase = merges
 [push]
 	default = upstream
 [rerere]
@@ -75,9 +76,10 @@
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
 	required = true
+	process = git-lfs filter-process
 [mergetool "p4mergetool"]
 	cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $PWD/$BASE $PWD/$REMOTE $PWD/$LOCAL $PWD/$MERGED
 	trustExitCode = false
