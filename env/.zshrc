@@ -100,4 +100,3 @@ ssh-add -A &> /dev/null
 autoload -U +X bashcompinit && bashcompinit
 
 complete -o nospace -C "/usr/local/bin/symfony self:autocomplete --zsh" symfony
-export PATH="/usr/local/opt/node@10/bin:$PATH"
